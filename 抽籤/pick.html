@@ -1,0 +1,47 @@
+
+<html>
+    <head>
+        <title>抽籤神器</title>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+        <link rel="stylesheet" href="pick.css" />
+        <script src="pick.js"></script>
+        <img id="img-shake" src="img-shake.gif">
+        <img id="img-ok" src="img-ok.gif">
+        <img id="123" src="img-wait.gif">
+        <h1 id="result">抽籤抽獎神器</h1>
+        <textarea id="textarea"></textarea>
+        <button id="start">開抽</button>
+        <script>
+        $('#img-shake').hide();
+        $('#img-ok').hide();
+
+
+        $('#start').on('click', getResult);
+
+        function getResult() {
+            var content = $('#textarea').val();
+            // console.log(content);
+            var options = content.split('\n');
+            // console.log(options);
+
+            var rand = Math.floor(Math.random()*options.length);
+            // alert(rand);
+
+            $('#img-shake').show();
+            
+            $('#123').hide();
+
+            $('#result').text('等待抽獎結果...');
+
+            setTimeout(function() {
+                $('#img-shake').hide();
+                $('#img-ok').show();
+                $('#result').text('開獎結果:' + options[rand]);
+            }, 3000);
+        }
+        </script>
+    </body>
+</html>
